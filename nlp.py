@@ -27,7 +27,7 @@ class NLPService:
         self.input_query = input_query
         wiki_articles = wiki.search(input_query)
         for article in wiki_articles[:min(len(wiki_articles), self.max_wiki_articles)]:
-            print(f"Getting summary for: {article}")
+            print(f"Summarizer: {article}")
             page = self.wiki_wiki.page(article)
             self.wiki_summary += "\n" + page.summary
 
@@ -37,6 +37,6 @@ class NLPService:
         """
         resp = self.service.natural_query(self.input_query, self.wiki_summary)
         if len(resp.results[0].answer) == 0:
-            return "Sorry, I don't understand, may you speak again?"
+            return "Sorry, I don't understand, can you say again?"
         else:
             return resp.results[0].answer

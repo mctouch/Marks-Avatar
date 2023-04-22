@@ -39,3 +39,6 @@
 
 ## Inspired by https://github.com/metaiintw/build-an-avatar-with-ASR-TTS-Transformer-Omniverse-Audio2Face
 ## Limitations: Currently Using the Wikipedia API for NLP Context Query, so it can only handle Q&A questions that can be answer by Wikipedia.
+
+
+docker run -d --init --ipc=host --gpus '"device=0"' -p 50051:50051 -e LD_PRELOAD= -e RIVA_API_KEY= -e RIVA_API_NGC_ORG= -e RIVA_EULA= -v riva-model-repo:/data --ulimit memlock=-1 --ulimit stack=67108864 --name riva-speech -p 8000 -p 8001 -p 8002 nvcr.io/nvidia/riva/riva-speech:2.10.0 start-riva --riva-uri=0.0.0.0:50051 --asr_service=true --tts_service=true --nlp_service=true
